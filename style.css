@@ -68,3 +68,137 @@ main {
 
     min-width: 0;
 }
+
+section {
+    display: flex;
+
+    flex-direction: column;
+
+    min-width: 0;
+
+    padding: var(--espaco-lg);
+
+    background-color: var(--cor-superficie);
+
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio);
+
+    box-shadow: 0 0.25rem 0.75rem rgba(41, 35, 61, 0.08);
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+h3 {
+    font-size: 1.25rem;
+}
+
+p,
+label,
+input {
+    font-size: 1rem;
+}
+
+.status {
+    display: flex;
+
+    align-items: center;
+
+    gap: var(--espaco-sm);
+
+    min-width: 0;
+
+    margin: 0 0 var(--espaco-md);
+}
+
+.bolinha {
+    flex: 0 0 auto;
+
+    width: 0.8rem;
+    height: 0.8rem;
+
+    border-radius: 50%;
+
+    box-shadow: 0 0 0.5rem currentColor;
+
+    animation: brilho 2s infinite ease-in-out;
+}
+
+
+/* A Fazer */
+
+.status-fazer {
+    color: var(--cor-a-fazer);
+}
+
+.status-fazer .bolinha {
+    background-color: var(--cor-a-fazer);
+}
+
+
+/* Em Andamento */
+
+.status-andamento {
+    color: var(--cor-andamento);
+}
+
+.status-andamento .bolinha {
+    background-color: var(--cor-andamento);
+}
+
+
+/* Em Revisão */
+
+.status-revisao {
+    color: var(--cor-revisao);
+}
+
+.status-revisao .bolinha {
+    background-color: var(--cor-revisao);
+}
+
+
+/* Concluída */
+
+.status-concluida {
+    color: var(--cor-concluida);
+}
+
+.status-concluida .bolinha {
+    background-color: var(--cor-concluida);
+}
+
+
+@keyframes brilho {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.15);
+        opacity: 0.75;
+    }
+}
+
+ul {
+    display: grid;
+
+    gap: var(--espaco-md);
+
+    min-width: 0;
+
+    padding: var(--espaco-md);
+    margin: 0;
+
+    list-style: none;
+
+    border-radius: var(--raio);
+}
