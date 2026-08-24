@@ -1,0 +1,33 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    /* Cores gerais */
+    --cor-fundo: #f6f3fb;
+    --cor-superficie: #ffffff;
+    --cor-texto: #29233d;
+    --cor-borda: #d8d1e2;
+
+    /* Cores dos status */
+    --cor-a-fazer: #2457a6;
+    --cor-andamento: #805d00;
+    --cor-revisao: #7040a0;
+    --cor-concluida: #267344;
+
+    /* Fundos dos status */
+    --fundo-a-fazer: #eef4ff;
+    --fundo-andamento: #fff8df;
+    --fundo-revisao: #f7efff;
+    --fundo-concluida: #edf8f0;
+
+    /* Espaçamentos */
+    --espaco-xs: 0.5rem;
+    --espaco-sm: 0.75rem;
+    --espaco-md: 1rem;
+    --espaco-lg: 1.5rem;
+    --espaco-xl: 2rem;
+
+    /* Bordas */
+    --raio: 0.75rem;
+}
