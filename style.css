@@ -31,3 +31,40 @@
     /* Bordas */
     --raio: 0.75rem;
 }
+
+body {
+    margin: 0;
+
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+}
+
+header, main, footer {
+    width: min(92%, 1200px);
+    margin-inline: auto;
+}
+
+
+header {
+    padding-block: var(--espaco-lg);
+}
+
+header h1 {
+    margin: 0;
+
+    font-size: clamp(1.75rem, 6vw, 2.5rem);
+    line-height: 1.2;
+}
+
+main {
+    display: grid;
+
+    grid-template-columns: 1fr;
+
+    gap: var(--espaco-lg);
+
+    min-width: 0;
+}
