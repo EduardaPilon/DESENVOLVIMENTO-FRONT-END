@@ -4,22 +4,22 @@
 
 :root {
     /* Cores gerais */
-    --cor-fundo: #f6f3fb;
-    --cor-superficie: #ffffff;
+    --cor-fundo: #8b5a2b;
+    --cor-superficie: #f7e7b5;
     --cor-texto: #29233d;
-    --cor-borda: #d8d1e2;
+    --cor-borda: #5f3a1d;
 
     /* Cores dos status */
     --cor-a-fazer: #2457a6;
-    --cor-andamento: #805d00;
+    --cor-andamento: #d69b00;
     --cor-revisao: #7040a0;
     --cor-concluida: #267344;
 
     /* Fundos dos status */
-    --fundo-a-fazer: #eef4ff;
-    --fundo-andamento: #fff8df;
-    --fundo-revisao: #f7efff;
-    --fundo-concluida: #edf8f0;
+    --fundo-a-fazer: #dcecff;
+    --fundo-andamento: #fff0a8;
+    --fundo-revisao: #eadcff;
+    --fundo-concluida: #d9f1d9;
 
     /* Espaçamentos */
     --espaco-xs: 0.5rem;
@@ -29,53 +29,146 @@
     --espaco-xl: 2rem;
 
     /* Bordas */
-    --raio: 0.75rem;
+    --raio: 0.35rem;
 }
+
+
+/* =====================================================
+   PÁGINA
+   ===================================================== */
 
 body {
     margin: 0;
+    padding: 1rem;
 
-    background-color: var(--cor-fundo);
     color: var(--cor-texto);
-
     font-family: Arial, sans-serif;
     line-height: 1.5;
+
+    /*
+       Fundo de madeira
+    */
+    background-color: #9a6737;
+
+    background-image:
+        repeating-linear-gradient(
+            0deg,
+            rgba(80, 40, 10, 0.08) 0,
+            rgba(80, 40, 10, 0.08) 1px,
+            transparent 1px,
+            transparent 8px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            rgba(255, 220, 150, 0.08) 0,
+            rgba(255, 220, 150, 0.08) 2px,
+            transparent 2px,
+            transparent 45px
+        ),
+        linear-gradient(
+            90deg,
+            #805020,
+            #a96f38,
+            #8d592c,
+            #b4773d,
+            #89552a
+        );
 }
 
-header, main, footer {
-    width: min(92%, 1200px);
+
+/* =====================================================
+   MOLDURA DO QUADRO
+   ===================================================== */
+
+header,
+main,
+footer {
+    width: 96%;
+    max-width: 1800px;
     margin-inline: auto;
 }
 
 
+/* =====================================================
+   CABEÇALHO
+   ===================================================== */
+
 header {
-    padding-block: var(--espaco-lg);
+    padding: var(--espaco-xl);
+
+    background-color: #f8e9b9;
+
+    /*
+       Papel preso no quadro
+    */
+    border: 1px solid #d4bd7d;
+
+    box-shadow:
+        0 0.4rem 0.7rem rgba(50, 25, 5, 0.35);
+
+    transform: rotate(-0.2deg);
 }
 
 header h1 {
     margin: 0;
 
-    font-size: clamp(1.75rem, 6vw, 2.5rem);
+    font-size: clamp(1.75rem, 5vw, 2.5rem);
     line-height: 1.2;
+
+    color: #33230f;
 }
+
+
+/* =====================================================
+   ÁREA PRINCIPAL DO KANBAN
+   ===================================================== */
 
 main {
     display: grid;
+
     grid-template-columns: 1fr;
+
     gap: var(--espaco-lg);
+
     min-width: 0;
+
+    /*
+       Espaço do quadro
+    */
+    padding-block: var(--espaco-xl);
 }
+
+
+/* =====================================================
+   SEÇÕES
+   ===================================================== */
 
 section {
     display: flex;
     flex-direction: column;
+
     min-width: 0;
+
     padding: var(--espaco-lg);
-    background-color: var(--cor-superficie);
-    border: 1px solid var(--cor-borda);
+
+    /*
+       Fundo transparente para parecer
+       parte do quadro de madeira.
+    */
+    background-color: rgba(70, 35, 10, 0.10);
+
+    border: 1px solid rgba(70, 35, 10, 0.25);
+
     border-radius: var(--raio);
-    box-shadow: 0 0.25rem 0.75rem rgba(41, 35, 61, 0.08);
+
+    box-shadow:
+        inset 0 0 1rem rgba(60, 30, 5, 0.10);
 }
+
+
+/* =====================================================
+   TIPOGRAFIA
+   ===================================================== */
 
 h1 {
     font-size: 2rem;
@@ -89,21 +182,49 @@ h3 {
     font-size: 1.25rem;
 }
 
-p, label, input {
+p,
+label,
+input {
     font-size: 1rem;
 }
 
-.status {
-    display: flex;
 
+/* =====================================================
+   TÍTULO DOS STATUS
+   ===================================================== */
+
+.status {
+    position: relative;
+
+    display: flex;
     align-items: center;
 
     gap: var(--espaco-sm);
 
     min-width: 0;
 
-    margin: 0 0 var(--espaco-md);
+    width: fit-content;
+
+    margin: 0 auto var(--espaco-lg);
+
+    padding: 0.65rem 1.5rem;
+
+    /*
+       Cada status parece uma folha
+       presa no quadro.
+    */
+    background-color: #ffffff;
+
+    border: 1px solid rgba(50, 30, 10, 0.20);
+
+    box-shadow:
+        0.2rem 0.3rem 0.5rem rgba(50, 25, 5, 0.25);
+
+    transform: rotate(-1deg);
 }
+
+
+/* Bolinha */
 
 .bolinha {
     flex: 0 0 auto;
@@ -113,16 +234,21 @@ p, label, input {
 
     border-radius: 50%;
 
-    box-shadow: 0 0 0.5rem currentColor;
+    box-shadow:
+        0 0 0.5rem currentColor;
 
     animation: brilho 2s infinite ease-in-out;
 }
 
 
-/* A Fazer */
+/* =====================================================
+   CORES DOS STATUS
+   ===================================================== */
 
 .status-fazer {
     color: var(--cor-a-fazer);
+
+    background-color: #cce1f7;
 }
 
 .status-fazer .bolinha {
@@ -130,10 +256,10 @@ p, label, input {
 }
 
 
-/* Em Andamento */
-
 .status-andamento {
-    color: var(--cor-andamento);
+    color: #795600;
+
+    background-color: #ffe477;
 }
 
 .status-andamento .bolinha {
@@ -141,10 +267,10 @@ p, label, input {
 }
 
 
-/* Em Revisão */
-
 .status-revisao {
     color: var(--cor-revisao);
+
+    background-color: #dfc9f4;
 }
 
 .status-revisao .bolinha {
@@ -152,10 +278,10 @@ p, label, input {
 }
 
 
-/* Concluída */
-
 .status-concluida {
     color: var(--cor-concluida);
+
+    background-color: #cce8c9;
 }
 
 .status-concluida .bolinha {
@@ -163,8 +289,11 @@ p, label, input {
 }
 
 
-@keyframes brilho {
+/* =====================================================
+   ANIMAÇÃO DA BOLINHA
+   ===================================================== */
 
+@keyframes brilho {
     0%,
     100% {
         transform: scale(1);
@@ -177,101 +306,249 @@ p, label, input {
     }
 }
 
+
+/* =====================================================
+   ÁREA DOS POST-ITS
+   ===================================================== */
+
 ul {
     display: flex;
     flex-direction: column;
-    gap: var(--espaco-md);
+
+    gap: var(--espaco-lg);
+
     min-width: 0;
-    padding: var(--espaco-md);
+
+    padding: var(--espaco-sm);
+
     margin: 0;
+
     list-style: none;
+
     border-radius: var(--raio);
 
     flex: 1;
 }
 
+
+/* Fundos coloridos de cada coluna */
+
 #status-fazer + ul {
-    background-color: var(--fundo-a-fazer);
+    background-color: rgba(190, 215, 240, 0.35);
 }
 
 #status-andamento + ul {
-    background-color: var(--fundo-andamento);
+    background-color: rgba(255, 220, 100, 0.25);
 }
 
 #status-revisao + ul {
-    background-color: var(--fundo-revisao);
+    background-color: rgba(210, 185, 235, 0.30);
 }
 
 #status-concluida + ul {
-    background-color: var(--fundo-concluida);
+    background-color: rgba(190, 225, 185, 0.30);
 }
+
 
 li {
     min-width: 0;
 }
 
+
+/* =====================================================
+   POST-ITS
+   ===================================================== */
+
 article {
+    position: relative;
+
     display: flex;
     flex-direction: column;
 
     min-width: 0;
 
+    min-height: 15rem;
+
     padding: var(--espaco-lg);
 
-    background-color: var(--cor-superficie);
+    /*
+       Papel do post-it
+    */
+    background-color: #fff6a8;
 
-    border: 2px solid var(--cor-borda);
-    border-radius: var(--raio);
+    /*
+       Borda de papel
+    */
+    border: 1px solid rgba(70, 50, 10, 0.20);
 
-    box-shadow: 0 0.25rem 0.5rem rgba(41, 35, 61, 0.08);
+    border-radius: 0.1rem;
+
+    /*
+       Sombra do papel sobre a madeira
+    */
+    box-shadow:
+        0.35rem 0.45rem 0.5rem rgba(40, 20, 5, 0.28);
+
+    /*
+       Pequena inclinação
+    */
+    transform: rotate(-1deg);
 
     transition:
         transform 0.25s ease,
         box-shadow 0.25s ease;
 }
 
-article .prazo {
-    margin-top: auto;
+
+/* Post-its alternados */
+
+li:nth-child(even) article {
+    transform: rotate(1.2deg);
 }
+
+
+/* =====================================================
+   FITA ADESIVA NO POST-IT
+   ===================================================== */
+
+article::before {
+    content: "";
+
+    position: absolute;
+
+    top: -0.55rem;
+    left: 50%;
+
+    width: 4rem;
+    height: 1.1rem;
+
+    transform: translateX(-50%) rotate(-2deg);
+
+    background-color: rgba(210, 190, 135, 0.75);
+
+    border: 1px solid rgba(120, 100, 60, 0.15);
+
+    box-shadow:
+        0 0.1rem 0.15rem rgba(50, 30, 5, 0.15);
+}
+
+
+/* =====================================================
+   CORES DOS POST-ITS
+   ===================================================== */
+
+#status-fazer + ul article {
+    background-color: #cfe5f7;
+
+    border-left: 0.35rem solid var(--cor-a-fazer);
+}
+
+#status-andamento + ul article {
+    background-color: #fff09a;
+
+    border-left: 0.35rem solid var(--cor-andamento);
+}
+
+#status-revisao + ul article {
+    background-color: #e5d1f3;
+
+    border-left: 0.35rem solid var(--cor-revisao);
+}
+
+#status-concluida + ul article {
+    background-color: #d5edcf;
+
+    border-left: 0.35rem solid var(--cor-concluida);
+}
+
+
+/* =====================================================
+   TÍTULO DOS POST-ITS
+   ===================================================== */
 
 article h3 {
     min-width: 0;
+
+    margin: 0 0 var(--espaco-sm);
+
     overflow: hidden;
 
     display: -webkit-box;
+
     -webkit-box-orient: vertical;
+
     -webkit-line-clamp: 2;
 
     line-clamp: 2;
 
-    margin: 0 0 var(--espaco-sm);
+    text-overflow: ellipsis;
+
+    color: #302611;
 }
 
+
+/* =====================================================
+   TEXTO DOS POST-ITS
+   ===================================================== */
+
 article p {
+    margin: 0;
+
     overflow-wrap: anywhere;
+
+    color: #3e321c;
 }
 
 article p + p {
     margin-top: var(--espaco-xs);
 }
 
+
+/* =====================================================
+   PRAZO NO FINAL
+   ===================================================== */
+
+article .prazo {
+    margin-top: auto;
+}
+
+
+/* =====================================================
+   PRIORIDADE
+   ===================================================== */
+
+article .prioridade {
+    font-weight: bold;
+}
+
+
+/* =====================================================
+   EFEITO DE POST-IT AO PASSAR O MOUSE
+   ===================================================== */
+
 article:hover {
-    transform: translateY(-0.25rem);
+    transform: translateY(-0.5rem) rotate(0deg);
 
     box-shadow:
-        0 0.6rem 1rem rgba(41, 35, 61, 0.12),
-        0 0 1rem rgba(112, 64, 160, 0.18);
+        0 0.9rem 1.2rem rgba(40, 20, 5, 0.30);
+
+    z-index: 5;
 }
+
+
+/* =====================================================
+   ESTRELINHA MÁGICA
+   ===================================================== */
 
 article::after {
     content: "✦";
 
     position: absolute;
 
-    top: 0.5rem;
     right: 0.75rem;
+    bottom: 0.5rem;
 
-    font-size: 1.2rem;
+    font-size: 1.3rem;
 
     opacity: 0;
 
@@ -285,16 +562,27 @@ article::after {
 article:hover::after {
     opacity: 1;
 
-    transform: scale(1) rotate(20deg);
+    transform:
+        scale(1)
+        rotate(20deg);
 }
 
+
+/* =====================================================
+   EFEITO DE CLIQUE
+   ===================================================== */
+
 article:active {
-    transform: scale(0.98);
+    transform: scale(0.97);
 }
+
+
+/* =====================================================
+   FORMULÁRIO
+   ===================================================== */
 
 form {
     display: flex;
-
     flex-direction: column;
 
     gap: var(--espaco-md);
@@ -304,7 +592,6 @@ form {
 
 form p {
     display: flex;
-
     flex-direction: column;
 
     gap: var(--espaco-xs);
@@ -312,9 +599,9 @@ form p {
     margin: 0;
 }
 
+
 fieldset {
     display: flex;
-
     flex-wrap: wrap;
 
     gap: var(--espaco-sm);
@@ -323,13 +610,22 @@ fieldset {
 
     padding: var(--espaco-md);
 
-    border: 1px solid var(--cor-borda);
+    background-color: rgba(255, 247, 210, 0.65);
+
+    border: 1px solid #c9a966;
+
     border-radius: var(--raio);
 }
+
 
 legend {
     font-weight: bold;
 }
+
+
+/* =====================================================
+   CAMPO DE BUSCA
+   ===================================================== */
 
 input[type="text"] {
     width: 100%;
@@ -338,12 +634,24 @@ input[type="text"] {
 
     padding: var(--espaco-sm);
 
-    color: var(--cor-texto);
-    background-color: var(--cor-superficie);
+    color: #3e321c;
 
-    border: 1px solid var(--cor-borda);
+    /* Papel envelhecido */
+    background-color: #ead9a8;
+
+    border: 1px solid #b89555;
+
     border-radius: var(--raio);
+
+    box-shadow:
+        inset 0 0.1rem 0.2rem rgba(80, 50, 15, 0.12),
+        0 0.15rem 0.25rem rgba(50, 25, 5, 0.15);
 }
+
+
+/* =====================================================
+   RADIO BUTTONS
+   ===================================================== */
 
 input[type="radio"] {
     width: 1.5rem;
@@ -356,6 +664,7 @@ input[type="radio"] {
     cursor: pointer;
 }
 
+
 label {
     display: inline-flex;
 
@@ -366,14 +675,32 @@ label {
     cursor: pointer;
 }
 
+
+/* =====================================================
+   FOCO - ACESSIBILIDADE
+   ===================================================== */
+
 input:focus-visible,
 label:focus-visible {
     outline: 3px solid #7040a0;
+
     outline-offset: 3px;
 }
 
+
+/* =====================================================
+   RODAPÉ
+   ===================================================== */
+
 footer {
-    padding-block: var(--espaco-lg);
+    padding: var(--espaco-lg);
+
+    background-color: #f8e9b9;
+
+    border: 1px solid #d4bd7d;
+
+    box-shadow:
+        0.25rem 0.3rem 0.5rem rgba(50, 25, 5, 0.25);
 }
 
 footer p {
@@ -384,31 +711,45 @@ footer p + p {
     margin-top: var(--espaco-xs);
 }
 
+
+/* =====================================================
+   KANBAN - 4 COLUNAS
+   ===================================================== */
+
 @media (min-width: 1100px) {
+
     main {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        align-items: start;
+        grid-template-columns:
+            repeat(4, minmax(0, 1fr));
+
+        align-items: stretch;
+
         gap: 1.5rem;
     }
 
-    /* A busca ocupa toda a largura do Kanban */
+    /*
+       Busca e filtros ocupam toda a largura.
+    */
+
     section:first-child {
         grid-column: 1 / -1;
     }
 }
 
-#status-fazer + ul article {
-    border-left: 0.35rem solid var(--cor-a-fazer);
-}
 
-#status-andamento + ul article {
-    border-left: 0.35rem solid var(--cor-andamento);
-}
+/* =====================================================
+   REDUÇÃO DE ANIMAÇÕES
+   ===================================================== */
 
-#status-revisao + ul article {
-    border-left: 0.35rem solid var(--cor-revisao);
-}
+@media (prefers-reduced-motion: reduce) {
 
-#status-concluida + ul article {
-    border-left: 0.35rem solid var(--cor-concluida);
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+
+        animation-iteration-count: 1 !important;
+
+        transition-duration: 0.01ms !important;
+    }
 }
