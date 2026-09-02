@@ -406,14 +406,13 @@ footer p + p {
     }
 }
 
-@media (prefers-reduced-motion: reduce) {
+@media (min-width: 1100px) {
+    main {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
 
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
+    section:first-child {
+        grid-column: 1 / -1;
     }
 }
 
