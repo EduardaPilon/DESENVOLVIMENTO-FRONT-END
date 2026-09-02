@@ -4,7 +4,7 @@
 
 export async function carregarTarefas() {
     try {
-        const resposta = await fetch("../dados.json");
+        const resposta = await fetch("dados.json");
         // vai pedir a url do arquivo json, e vai esperar a resposta do servidor, caso não tenha resposta, vai dar erro
         if (!resposta.ok) {
             throw new Error(`Erro HTTP: ${resposta.status}`);
