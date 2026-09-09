@@ -13,6 +13,18 @@ const estado = {
     erro: null
 };
 
+function derivarTarefas(estado) {
+    let tarefas = [...estado.tarefas];
+
+    if (estado.busca !== "") {
+        tarefas = tarefas.filter(tarefa =>
+            tarefa.titulo.toLowerCase().includes(estado.busca.toLowerCase())
+        );
+    }
+
+    return tarefas;
+}
+
 async function iniciarAplicacao() {
 
     renderizarEstado("carregando");
