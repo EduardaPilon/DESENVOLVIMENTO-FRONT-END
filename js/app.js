@@ -3,12 +3,23 @@ import { carregarTarefas } from "./api.js";
 import { renderizarEstado } from "./estados.js";
 import { renderizarTarefas } from "./renderizacao.js";
 
+const estado = {
+    tarefas: [],
+    busca: "",
+    status: "Todos",
+    prioridade: "Todas",
+    ordenacao: "nenhuma",
+    carregamento: "carregando",
+    erro: null
+};
+
 async function iniciarAplicacao() {
 
     renderizarEstado("carregando");
 
     try {
         const tarefas = await carregarTarefas();
+        estado.tarefas = tarefas;
 
         if (tarefas.length === 0) {
             renderizarEstado("vazio");
