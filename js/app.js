@@ -34,6 +34,15 @@ function derivarTarefas(estado) {
         );
     }
 
+    if (estado.ordenacao === "prazo") {
+        tarefas.sort((a, b) => {
+            const dataA = new Date(a.prazo.split("/").reverse().join("-"));
+            const dataB = new Date(b.prazo.split("/").reverse().join("-"));
+
+            return dataA - dataB;
+        });
+    }
+
     return tarefas;
 }
 
