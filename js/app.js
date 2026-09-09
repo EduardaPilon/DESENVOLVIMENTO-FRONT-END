@@ -23,10 +23,16 @@ function derivarTarefas(estado) {
     }
 
     if (estado.status !== "Todos") {
-    tarefas = tarefas.filter(tarefa =>
-        tarefa.status === estado.status
-    );
-}
+        tarefas = tarefas.filter(tarefa =>
+            tarefa.status === estado.status
+        );
+    }
+
+    if (estado.prioridade !== "Todas") {
+        tarefas = tarefas.filter(tarefa =>
+            tarefa.prioridade === estado.prioridade
+        );
+    }
 
     return tarefas;
 }
