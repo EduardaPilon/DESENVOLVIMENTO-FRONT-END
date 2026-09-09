@@ -22,6 +22,12 @@ function derivarTarefas(estado) {
         );
     }
 
+    if (estado.status !== "Todos") {
+    tarefas = tarefas.filter(tarefa =>
+        tarefa.status === estado.status
+    );
+}
+
     return tarefas;
 }
 
