@@ -96,6 +96,22 @@ campoOrdenacao.addEventListener("change", (evento) => {
     renderizar();
 });
 
+const botaoLimpar = document.querySelector("#limpar-filtros");
+
+botaoLimpar.addEventListener("click", () => {
+    estado.busca = "";
+    estado.status = "Todos";
+    estado.prioridade = "Todas";
+    estado.ordenacao = "nenhuma";
+
+    document.querySelector("#busca").value = "";
+    document.querySelector("#todos").checked = true;
+    document.querySelector("#todas").checked = true;
+    document.querySelector("#ordenacao").value = "nenhuma";
+
+    renderizar();
+});
+
 async function iniciarAplicacao() {
 
     renderizarEstado("carregando");
