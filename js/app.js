@@ -80,6 +80,15 @@ camposStatus.forEach((campo) => {
     });
 });
 
+const camposPrioridade = document.querySelectorAll('input[name="prioridade"]');
+
+camposPrioridade.forEach((campo) => {
+    campo.addEventListener("change", (evento) => {
+        estado.prioridade = evento.target.value;
+        renderizar();
+    });
+});
+
 async function iniciarAplicacao() {
 
     renderizarEstado("carregando");
