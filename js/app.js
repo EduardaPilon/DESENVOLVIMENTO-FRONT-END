@@ -71,6 +71,15 @@ campoBusca.addEventListener("input", (evento) => {
     renderizar();
 });
 
+const camposStatus = document.querySelectorAll('input[name="status"]');
+
+camposStatus.forEach((campo) => {
+    campo.addEventListener("change", (evento) => {
+        estado.status = evento.target.value;
+        renderizar();
+    });
+});
+
 async function iniciarAplicacao() {
 
     renderizarEstado("carregando");
