@@ -46,21 +46,36 @@ function derivarTarefas(estado) {
     return tarefas;
 }
 
+function renderizar() {
+    const tarefasVisiveis = derivarTarefas(estado);
+
+    renderizarTarefas(tarefasVisiveis);
+
+    if (estado.tarefas.length === 0) {
+        renderizarEstado("vazio");
+        return;
+    }
+
+    if (tarefasVisiveis.length === 0) {
+        renderizarEstado("resultado-vazio");
+        return;
+    }
+
+    renderizarEstado("sucesso", tarefasVisiveis);
+}
+
 async function iniciarAplicacao() {
 
     renderizarEstado("carregando");
 
     try {
         const tarefas = await carregarTarefas();
+
         estado.tarefas = tarefas;
+        estado.carregamento = "sucesso";
+        estado.erro = null;
 
-        if (tarefas.length === 0) {
-            renderizarEstado("vazio");
-            return;
-        }
-
-        renderizarTarefas(tarefas);
-        renderizarEstado("sucesso", tarefas);
+        renderizar();
 
     } catch (erro) {
 
