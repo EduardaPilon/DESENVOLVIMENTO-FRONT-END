@@ -64,6 +64,13 @@ function renderizar() {
     renderizarEstado("sucesso", tarefasVisiveis);
 }
 
+const campoBusca = document.querySelector("#busca");
+
+campoBusca.addEventListener("input", (evento) => {
+    estado.busca = evento.target.value;
+    renderizar();
+});
+
 async function iniciarAplicacao() {
 
     renderizarEstado("carregando");
