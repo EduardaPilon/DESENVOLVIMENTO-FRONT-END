@@ -61,7 +61,10 @@ function renderizar() {
         return;
     }
 
-    renderizarEstado("sucesso", tarefasVisiveis);
+    renderizarEstado("sucesso", {
+    visiveis: tarefasVisiveis.length,
+    total: estado.tarefas.length
+    });
 }
 
 const campoBusca = document.querySelector("#busca");
