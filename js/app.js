@@ -47,6 +47,13 @@ function derivarTarefas(estado) {
 }
 
 function renderizar() {
+
+    if (estado.carregamento === "erro") {
+        renderizarTarefas([]);
+        renderizarEstado("erro", estado.erro);
+        return;
+    }
+
     const tarefasVisiveis = derivarTarefas(estado);
 
     renderizarTarefas(tarefasVisiveis);
@@ -62,8 +69,8 @@ function renderizar() {
     }
 
     renderizarEstado("sucesso", {
-    visiveis: tarefasVisiveis.length,
-    total: estado.tarefas.length
+        visiveis: tarefasVisiveis.length,
+        total: estado.tarefas.length
     });
 }
 
@@ -145,7 +152,10 @@ async function iniciarAplicacao() {
             mensagem = `Não foi possível carregar as tarefas. ${erro.message}`;
         }
 
-        renderizarEstado("erro", mensagem);
+        estado.carregamento = "erro";
+        estado.erro = mensagem;
+
+        renderizar();
     }
 }
 
