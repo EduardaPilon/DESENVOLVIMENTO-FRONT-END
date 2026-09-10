@@ -117,6 +117,9 @@ botaoLimpar.addEventListener("click", () => {
 
 async function iniciarAplicacao() {
 
+    estado.carregamento = "carregando";
+    estado.erro = null;
+
     renderizarEstado("carregando");
 
     try {
