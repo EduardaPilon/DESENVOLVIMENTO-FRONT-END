@@ -7,7 +7,7 @@ export function renderizarEstado(estado, dados) {
     }
 
     if (estado === "sucesso") {
-        status.textContent = `${dados.length} tarefas encontradas.`;
+    status.textContent = `${dados.visiveis} de ${dados.total} tarefas.`;
     }
 
     if (estado === "vazio") {
