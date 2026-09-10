@@ -89,6 +89,13 @@ camposPrioridade.forEach((campo) => {
     });
 });
 
+const campoOrdenacao = document.querySelector("#ordenacao");
+
+campoOrdenacao.addEventListener("change", (evento) => {
+    estado.ordenacao = evento.target.value;
+    renderizar();
+});
+
 async function iniciarAplicacao() {
 
     renderizarEstado("carregando");
