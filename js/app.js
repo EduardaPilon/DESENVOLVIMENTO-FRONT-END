@@ -48,6 +48,12 @@ function derivarTarefas(estado) {
 
 function renderizar() {
 
+    if (estado.carregamento === "carregando") {
+    renderizarTarefas([]);
+    renderizarEstado("carregando");
+    return;
+}
+
     if (estado.carregamento === "erro") {
         renderizarTarefas([]);
         renderizarEstado("erro", estado.erro);
@@ -127,7 +133,7 @@ async function iniciarAplicacao() {
     estado.carregamento = "carregando";
     estado.erro = null;
 
-    renderizarEstado("carregando");
+    renderizar();
 
     try {
         const tarefas = await carregarTarefas();
