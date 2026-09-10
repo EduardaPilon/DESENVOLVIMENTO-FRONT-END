@@ -7,11 +7,15 @@ export function renderizarEstado(estado, dados) {
     }
 
     if (estado === "sucesso") {
-        status.textContent = `${dados.length} tarefas carregadas.`;
+        status.textContent = `${dados.length} tarefas encontradas.`;
     }
 
     if (estado === "vazio") {
-        status.textContent = "Nenhuma tarefa encontrada.";
+        status.textContent = "Nenhuma tarefa cadastrada.";
+    }
+
+    if (estado === "resultado-vazio") {
+        status.textContent = "Nenhuma tarefa corresponde aos filtros.";
     }
 
     if (estado === "erro") {
