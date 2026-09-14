@@ -29,7 +29,7 @@
     --espaco-xl: 2rem;
 
     /* Bordas */
-    --raio: 0.35rem;
+    --raio: 0.45rem;
 }
 
 
@@ -42,12 +42,12 @@ body {
     padding: 1rem;
 
     color: var(--cor-texto);
-    font-family: Arial, sans-serif;
+
+    /* Fonte mais orgânica */
+    font-family: "Segoe Print", "Bradley Hand", "Comic Sans MS", cursive;
+
     line-height: 1.5;
 
-    /*
-       Fundo de madeira
-    */
     background-color: #9a6737;
 
     background-image:
@@ -98,19 +98,20 @@ header {
 
     background-color: #f8e9b9;
 
-    /*
-       Papel preso no quadro
-    */
     border: 1px solid #d4bd7d;
 
     box-shadow:
         0 0.4rem 0.7rem rgba(50, 25, 5, 0.35);
 
     transform: rotate(-0.2deg);
+
+    border-radius: 0.15rem 0.5rem 0.2rem 0.4rem;
 }
 
 header h1 {
     margin: 0;
+
+    font-family: "Segoe Print", "Bradley Hand", cursive;
 
     font-size: clamp(1.75rem, 5vw, 2.5rem);
     line-height: 1.2;
@@ -132,9 +133,6 @@ main {
 
     min-width: 0;
 
-    /*
-       Espaço do quadro
-    */
     padding-block: var(--espaco-xl);
 }
 
@@ -151,15 +149,11 @@ section {
 
     padding: var(--espaco-lg);
 
-    /*
-       Fundo transparente para parecer
-       parte do quadro de madeira.
-    */
     background-color: rgba(70, 35, 10, 0.10);
 
     border: 1px solid rgba(70, 35, 10, 0.25);
 
-    border-radius: var(--raio);
+    border-radius: 0.4rem 0.7rem 0.5rem 0.6rem;
 
     box-shadow:
         inset 0 0 1rem rgba(60, 30, 5, 0.10);
@@ -184,10 +178,308 @@ h3 {
 
 p,
 label,
-input {
+input,
+select,
+button {
     font-size: 1rem;
 }
 
+/* =====================================================
+   PAINEL DE BUSCA E FILTROS
+   ===================================================== */
+
+section:first-child {
+    position: relative;
+
+    /* retiramos a caixa maior */
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+
+    transform: none;
+}
+
+
+/* =====================================================
+   TÍTULO DA ÁREA DE FILTROS
+   ===================================================== */
+
+section:first-child h2 {
+    margin-top: 0;
+    margin-bottom: var(--espaco-md);
+
+    font-family: "Segoe Print", "Bradley Hand", cursive;
+
+    color: #4b3218;
+    text-align: center;
+
+    letter-spacing: 0.03em;
+}
+
+
+/* =====================================================
+   FORMULÁRIO
+   ===================================================== */
+
+form {
+    display: flex;
+    flex-direction: column;
+
+    gap: var(--espaco-md);
+
+    min-width: 0;
+}
+
+form p {
+    display: flex;
+    flex-direction: column;
+
+    gap: var(--espaco-xs);
+
+    margin: 0;
+}
+
+
+/* =====================================================
+   FIELDSETS
+   ===================================================== */
+
+fieldset {
+    position: relative;
+
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: var(--espaco-sm);
+
+    min-width: 0;
+
+    padding: 1.7rem var(--espaco-md) var(--espaco-md);
+
+    /* mais transparente */
+    background-color: rgba(255, 247, 210, 0.38);
+
+    border: 2px solid rgba(201, 169, 102, 0.70);
+
+    border-radius: 0.55rem 0.35rem 0.6rem 0.45rem;
+
+    box-shadow:
+        inset 0 0 0.5rem rgba(100, 60, 15, 0.05);
+}
+
+
+/* =====================================================
+   LEGENDS
+   ===================================================== */
+
+/*
+   O título continua com seu próprio fundo,
+   fazendo "Status", "Prioridade" e "Opções"
+   parecerem realmente dentro da caixa.
+*/
+
+legend {
+    padding: 0.2rem 0.7rem;
+
+    font-family: "Segoe Print", "Bradley Hand", cursive;
+
+    font-size: 1rem;
+
+    font-weight: bold;
+
+    color: #4b3218;
+
+    background-color: #fff7d2;
+
+    border: 1px solid #c9a966;
+
+    border-radius: 0.35rem;
+
+    box-shadow:
+        0 0.1rem 0.2rem rgba(60, 30, 5, 0.12);
+}
+
+
+/* =====================================================
+   BUSCA
+   ===================================================== */
+
+form > p {
+    padding: 0.7rem 0.8rem;
+
+    /* também um pouco transparente */
+    background-color: rgba(255, 247, 210, 0.38);
+
+    border: 1px dashed rgba(184, 149, 85, 0.75);
+
+    border-radius: 0.5rem 0.7rem 0.4rem 0.6rem;
+}
+
+form > p label {
+    font-family: "Segoe Print", "Bradley Hand", cursive;
+
+    font-weight: bold;
+
+    color: #4b3218;
+}
+
+
+/* =====================================================
+   CAMPO DE BUSCA
+   ===================================================== */
+
+input[type="text"] {
+    width: 100%;
+
+    min-height: 2.9rem;
+
+    padding: var(--espaco-sm) 1rem;
+
+    color: #3e321c;
+
+    background-color: rgba(243, 227, 181, 0.78);
+
+    border: 2px solid #b89555;
+
+    border-radius: 0.5rem 0.7rem 0.45rem 0.6rem;
+
+    box-shadow:
+        inset 0 0.1rem 0.2rem rgba(80, 50, 15, 0.10),
+        0 0.15rem 0.25rem rgba(50, 25, 5, 0.10);
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+input[type="text"]::placeholder {
+    color: #796548;
+
+    font-style: italic;
+}
+
+input[type="text"]:focus {
+    border-color: #7040a0;
+
+    box-shadow:
+        0 0 0 3px rgba(112, 64, 160, 0.12),
+        inset 0 0.1rem 0.2rem rgba(80, 50, 15, 0.12);
+
+    transform: translateY(-1px);
+}
+
+
+/* =====================================================
+   RADIO BUTTONS
+   ===================================================== */
+
+input[type="radio"] {
+    width: 1.35rem;
+    height: 1.35rem;
+
+    margin: 0;
+
+    flex: 0 0 auto;
+
+    cursor: pointer;
+
+    accent-color: #7040a0;
+}
+
+label {
+    display: inline-flex;
+
+    align-items: center;
+
+    min-height: 1.5rem;
+
+    cursor: pointer;
+
+    color: #4b3218;
+}
+
+
+/* =====================================================
+   OPÇÕES / SELECT
+   ===================================================== */
+
+select {
+    min-height: 2.5rem;
+
+    padding: 0.5rem 0.75rem;
+
+    color: #3e321c;
+
+    background-color: rgba(243, 227, 181, 0.78);
+
+    border: 1px solid #b89555;
+
+    border-radius: 0.4rem;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    cursor: pointer;
+}
+
+
+/* =====================================================
+   BOTÃO LIMPAR FILTROS
+   ===================================================== */
+
+button {
+    min-height: 2.5rem;
+
+    padding: 0.5rem 1rem;
+
+    color: #fff7d2;
+
+    background-color: #7040a0;
+
+    border: none;
+
+    border-radius: 0.4rem;
+
+    font-family: "Segoe Print", "Bradley Hand", cursive;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0.2rem 0.35rem rgba(50, 25, 5, 0.25);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 0.35rem 0.5rem rgba(50, 25, 5, 0.3);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+
+/* =====================================================
+   FOCO - ACESSIBILIDADE
+   ===================================================== */
+
+input:focus-visible,
+select:focus-visible,
+button:focus-visible,
+label:focus-visible {
+    outline: 3px solid #7040a0;
+
+    outline-offset: 3px;
+}
 
 /* =====================================================
    TÍTULO DOS STATUS
@@ -209,10 +501,6 @@ input {
 
     padding: 0.65rem 1.5rem;
 
-    /*
-       Cada status parece uma folha
-       presa no quadro.
-    */
     background-color: #ffffff;
 
     border: 1px solid rgba(50, 30, 10, 0.20);
@@ -221,6 +509,8 @@ input {
         0.2rem 0.3rem 0.5rem rgba(50, 25, 5, 0.25);
 
     transform: rotate(-1deg);
+
+    border-radius: 0.15rem 0.35rem 0.2rem 0.3rem;
 }
 
 
@@ -331,7 +621,7 @@ ul {
 }
 
 
-/* Fundos coloridos de cada coluna */
+/* Fundos das colunas */
 
 #status-fazer + ul {
     background-color: rgba(190, 215, 240, 0.35);
@@ -371,27 +661,15 @@ article {
 
     padding: var(--espaco-lg);
 
-    /*
-       Papel do post-it
-    */
     background-color: #fff6a8;
 
-    /*
-       Borda de papel
-    */
     border: 1px solid rgba(70, 50, 10, 0.20);
 
     border-radius: 0.1rem;
 
-    /*
-       Sombra do papel sobre a madeira
-    */
     box-shadow:
         0.35rem 0.45rem 0.5rem rgba(40, 20, 5, 0.28);
 
-    /*
-       Pequena inclinação
-    */
     transform: rotate(-1deg);
 
     transition:
@@ -408,7 +686,7 @@ li:nth-child(even) article {
 
 
 /* =====================================================
-   FITA ADESIVA NO POST-IT
+   FITA ADESIVA
    ===================================================== */
 
 article::before {
@@ -484,6 +762,12 @@ article h3 {
     text-overflow: ellipsis;
 
     color: #302611;
+
+    font-family: "Segoe Print", "Bradley Hand", cursive;
+
+    font-size: 1.25rem;
+
+    line-height: 1.35;
 }
 
 
@@ -497,6 +781,8 @@ article p {
     overflow-wrap: anywhere;
 
     color: #3e321c;
+
+    font-family: Georgia, "Times New Roman", serif;
 }
 
 article p + p {
@@ -505,7 +791,7 @@ article p + p {
 
 
 /* =====================================================
-   PRAZO NO FINAL
+   PRAZO
    ===================================================== */
 
 article .prazo {
@@ -523,7 +809,7 @@ article .prioridade {
 
 
 /* =====================================================
-   EFEITO DE POST-IT AO PASSAR O MOUSE
+   EFEITO DO POST-IT
    ===================================================== */
 
 article:hover {
@@ -537,7 +823,7 @@ article:hover {
 
 
 /* =====================================================
-   ESTRELINHA MÁGICA
+   ESTRELINHA
    ===================================================== */
 
 article::after {
@@ -578,117 +864,6 @@ article:active {
 
 
 /* =====================================================
-   FORMULÁRIO
-   ===================================================== */
-
-form {
-    display: flex;
-    flex-direction: column;
-
-    gap: var(--espaco-md);
-
-    min-width: 0;
-}
-
-form p {
-    display: flex;
-    flex-direction: column;
-
-    gap: var(--espaco-xs);
-
-    margin: 0;
-}
-
-
-fieldset {
-    display: flex;
-    flex-wrap: wrap;
-
-    gap: var(--espaco-sm);
-
-    min-width: 0;
-
-    padding: var(--espaco-md);
-
-    background-color: rgba(255, 247, 210, 0.65);
-
-    border: 1px solid #c9a966;
-
-    border-radius: var(--raio);
-}
-
-
-legend {
-    font-weight: bold;
-}
-
-
-/* =====================================================
-   CAMPO DE BUSCA
-   ===================================================== */
-
-input[type="text"] {
-    width: 100%;
-
-    min-height: 2.75rem;
-
-    padding: var(--espaco-sm);
-
-    color: #3e321c;
-
-    /* Papel envelhecido */
-    background-color: #ead9a8;
-
-    border: 1px solid #b89555;
-
-    border-radius: var(--raio);
-
-    box-shadow:
-        inset 0 0.1rem 0.2rem rgba(80, 50, 15, 0.12),
-        0 0.15rem 0.25rem rgba(50, 25, 5, 0.15);
-}
-
-
-/* =====================================================
-   RADIO BUTTONS
-   ===================================================== */
-
-input[type="radio"] {
-    width: 1.5rem;
-    height: 1.5rem;
-
-    margin: 0;
-
-    flex: 0 0 auto;
-
-    cursor: pointer;
-}
-
-
-label {
-    display: inline-flex;
-
-    align-items: center;
-
-    min-height: 1.5rem;
-
-    cursor: pointer;
-}
-
-
-/* =====================================================
-   FOCO - ACESSIBILIDADE
-   ===================================================== */
-
-input:focus-visible,
-label:focus-visible {
-    outline: 3px solid #7040a0;
-
-    outline-offset: 3px;
-}
-
-
-/* =====================================================
    RODAPÉ
    ===================================================== */
 
@@ -701,10 +876,14 @@ footer {
 
     box-shadow:
         0.25rem 0.3rem 0.5rem rgba(50, 25, 5, 0.25);
+
+    border-radius: 0.2rem 0.5rem 0.3rem 0.4rem;
 }
 
 footer p {
     margin: 0;
+
+    font-family: Georgia, "Times New Roman", serif;
 }
 
 footer p + p {
@@ -726,10 +905,6 @@ footer p + p {
 
         gap: 1.5rem;
     }
-
-    /*
-       Busca e filtros ocupam toda a largura.
-    */
 
     section:first-child {
         grid-column: 1 / -1;
