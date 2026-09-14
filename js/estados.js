@@ -15,7 +15,7 @@ export function renderizarEstado(estado, dados) {
     }
 
     if (estado === "resultado-vazio") {
-        status.textContent = "Nenhuma tarefa corresponde aos filtros.";
+    status.textContent = `0 de ${dados.total} tarefas correspondem aos filtros.`;
     }
 
     if (estado === "erro") {
