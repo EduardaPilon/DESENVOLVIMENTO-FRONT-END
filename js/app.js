@@ -70,8 +70,10 @@ function renderizar() {
     }
 
     if (tarefasVisiveis.length === 0) {
-        renderizarEstado("resultado-vazio");
-        return;
+    renderizarEstado("resultado-vazio", {
+        total: estado.tarefas.length
+    });
+    return;
     }
 
     renderizarEstado("sucesso", {
