@@ -19,72 +19,74 @@
 
         <section aria-labelledby="filtros">
             <div role="status" aria-live="polite"></div>
-            
+
             <h2 id="filtros">Busca e Filtros</h2>
 
             <form>
 
-                <fieldset> 
-                    <legend>Opções</legend>
-                    <p>
+                <!-- Busca separada -->
+                <div class="area-pesquisa">
+                    <label for="busca">Buscar tarefa:</label>
+                    <input type="text" id="busca" name="busca">
+                </div>
+
+                <!-- Todos os filtros juntos -->
+                <fieldset class="grupo-filtros">
+                    <legend>Filtros</legend>
+
+                    <fieldset>
+                        <legend>Status</legend>
+
+                        <input type="radio" id="todos" name="status" value="Todos" checked>
+                        <label for="todos">Todos</label>
+
+                        <input type="radio" id="fazer" name="status" value="a-fazer">
+                        <label for="fazer">A Fazer</label>
+
+                        <input type="radio" id="andamento" name="status" value="andamento">
+                        <label for="andamento">Em Andamento</label>
+
+                        <input type="radio" id="revisao" name="status" value="revisao">
+                        <label for="revisao">Em Revisão</label>
+
+                        <input type="radio" id="concluida" name="status" value="concluida">
+                        <label for="concluida">Concluída</label>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Prioridade</legend>
+
+                        <input type="radio" id="todas" name="prioridade" value="Todas" checked>
+                        <label for="todas">Todas</label>
+
+                        <input type="radio" id="baixa" name="prioridade" value="baixa">
+                        <label for="baixa">Baixa</label>
+
+                        <input type="radio" id="media" name="prioridade" value="media">
+                        <label for="media">Média</label>
+
+                        <input type="radio" id="alta" name="prioridade" value="alta">
+                        <label for="alta">Alta</label>
+                    </fieldset>
+
+                    <div class="area-ordenacao">
                         <label for="ordenacao">Ordenar por:</label>
+
                         <select id="ordenacao" name="ordenacao">
                             <option value="nenhuma">Nenhuma</option>
                             <option value="prazo">Prazo</option>
                         </select>
-                    </p>
+                    </div>
 
-                    <p>
-                        <button type="button" id="limpar-filtros">Limpar filtros</button>
-                    </p>
-                    
-                </fieldset>
-
-                <p>
-                    <label for="busca">Buscar tarefa:</label>
-                    <input type="text" id="busca" name="busca">
-                </p>
-
-                <fieldset>
-                    <legend>Status</legend>
-                    <input type="radio" id="todos" name="status" value="Todos" checked>
-                    <label for="todos">Todos</label>
-
-                    <input type="radio" id="fazer" name="status" value="a-fazer">
-                    <label for="fazer">A Fazer</label>
-
-                    <input type="radio" id="andamento" name="status" value="andamento">
-                    <label for="andamento">Em Andamento</label>
-
-                    <input type="radio" id="revisao" name="status" value="revisao">
-                    <label for="revisao">Em Revisão</label>
-
-                    <input type="radio" id="concluida" name="status" value="concluida">
-                    <label for="concluida">Concluída</label>
-
-                </fieldset>
-
-                <fieldset>
-                    <legend>Prioridade</legend>
-
-                    <input type="radio" id="todas" name="prioridade" value="Todas" checked>
-                    <label for="todas">Todas</label>
-
-                    <input type="radio" id="baixa" name="prioridade" value="baixa">
-                    <label for="baixa">Baixa</label>
-
-                    <input type="radio" id="media" name="prioridade" value="media">
-                    <label for="media">Média</label>
-
-                    <input type="radio" id="alta" name="prioridade" value="alta">
-                    <label for="alta">Alta</label>
+                    <button type="button" id="limpar-filtros">
+                        Limpar filtros
+                    </button>
 
                 </fieldset>
 
             </form>
-
         </section>
-
+        
         <section aria-labelledby="status-fazer">
             <h2 id="status-fazer" class="status status-fazer">
                 <span class="bolinha" aria-hidden="true"></span>

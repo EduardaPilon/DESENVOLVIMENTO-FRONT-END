@@ -959,3 +959,156 @@ footer p + p {
         transition-duration: 0.01ms !important;
     }
 }
+
+
+/* =========================
+   BUSCA E FILTROS
+   ========================= */
+
+.area-pesquisa {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+}
+
+.area-pesquisa label {
+    font-weight: 600;
+    color: #4a3925;
+}
+
+.area-pesquisa input {
+    width: 100%;
+    padding: 0.65rem 0.8rem;
+
+    border: 1px solid rgba(95, 75, 50, 0.45);
+    border-radius: 5px;
+
+    background: rgba(255, 248, 225, 0.55);
+    color: #3f3324;
+
+    font: inherit;
+
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================
+   ÁREA DE FILTROS
+   ========================= */
+
+.grupo-filtros {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+
+    padding: 0.8rem 1rem;
+
+    border: 1px solid rgba(95, 75, 50, 0.4);
+    border-radius: 5px;
+
+    background: rgba(255, 248, 225, 0.2);
+
+    box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.08);
+}
+
+.grupo-filtros > legend {
+    padding: 0 0.5rem;
+
+    color: #4a3925;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+
+/* =========================
+   STATUS E PRIORIDADE
+   ========================= */
+
+.grupo-filtros fieldset {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem 0.7rem;
+
+    padding: 0.55rem 0.7rem;
+
+    border: none;
+    border-radius: 4px;
+
+    background: rgba(255, 255, 255, 0.18);
+}
+
+.grupo-filtros fieldset legend {
+    padding: 0 0.3rem;
+
+    color: #5a4630;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.grupo-filtros fieldset label {
+    color: #4a3925;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+
+/* =========================
+   ORDENAÇÃO
+   ========================= */
+
+.area-ordenacao {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.area-ordenacao label {
+    color: #4a3925;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.area-ordenacao select {
+    padding: 0.4rem 0.55rem;
+
+    border: 1px solid rgba(95, 75, 50, 0.45);
+    border-radius: 4px;
+
+    background: rgba(255, 248, 225, 0.55);
+    color: #3f3324;
+
+    font: inherit;
+    font-size: 0.85rem;
+}
+
+
+/* =========================
+   LIMPAR FILTROS
+   ========================= */
+
+#limpar-filtros {
+    align-self: flex-start;
+
+    padding: 0.45rem 0.8rem;
+
+    border: 1px solid rgba(95, 75, 50, 0.5);
+    border-radius: 4px;
+
+    background: rgba(255, 255, 255, 0.3);
+    color: #4a3925;
+
+    font: inherit;
+    font-size: 0.8rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+#limpar-filtros:hover {
+    background: rgba(255, 255, 255, 0.55);
+    transform: translateY(-1px);
+}
