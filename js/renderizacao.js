@@ -28,9 +28,15 @@ export function renderizarTarefas(tarefas) {
         prioridade.classList.add("prioridade");
         prioridade.textContent = `Prioridade: ${tarefa.prioridade}`;
 
+        const botaoDetalhes = document.createElement("button");
+        botaoDetalhes.type = "button";
+        botaoDetalhes.classList.add("botao-detalhes");
+        botaoDetalhes.textContent = "Ver detalhes";
+
         article.appendChild(titulo);
         article.appendChild(prazo);
         article.appendChild(prioridade);
+        article.appendChild(botaoDetalhes);
 
         li.appendChild(article);
 
