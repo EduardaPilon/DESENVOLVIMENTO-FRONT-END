@@ -1,940 +1,166 @@
-* {
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Kalam:wght@400;700&family=Patrick+Hand&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+/* =====================================================
+   RESET E VARIÁVEIS GLOBAIS
+   ===================================================== */
+*, *::before, *::after {
     box-sizing: border-box;
 }
 
 :root {
-    /* Cores gerais */
-    --cor-fundo: #8b5a2b;
-    --cor-superficie: #f7e7b5;
-    --cor-texto: #29233d;
-    --cor-borda: #5f3a1d;
+    /* Cores de Madeira e Cortiça */
+    --fundo-cortica: #8e5829;
+    --fundo-cortica-escuro: #6e4019;
+    --texto-principal: #2b1a0d;
 
-    /* Cores dos status */
-    --cor-a-fazer: #2457a6;
-    --cor-andamento: #d69b00;
-    --cor-revisao: #7040a0;
-    --cor-concluida: #267344;
+    /* Cores dos Status */
+    --cor-a-fazer: #0284c7;
+    --cor-andamento: #d97706;
+    --cor-revisao: #7c3aed;
+    --cor-concluida: #16a34a;
 
-    /* Fundos dos status */
-    --fundo-a-fazer: #dcecff;
-    --fundo-andamento: #fff0a8;
-    --fundo-revisao: #eadcff;
-    --fundo-concluida: #d9f1d9;
+    /* Fundos das Colunas */
+    --fundo-fazer-col: rgba(224, 242, 254, 0.22);
+    --fundo-andamento-col: rgba(254, 243, 199, 0.22);
+    --fundo-revisao-col: rgba(243, 232, 255, 0.22);
+    --fundo-concluida-col: rgba(220, 252, 231, 0.22);
 
-    /* Espaçamentos */
-    --espaco-xs: 0.5rem;
-    --espaco-sm: 0.75rem;
-    --espaco-md: 1rem;
-    --espaco-lg: 1.5rem;
-    --espaco-xl: 2rem;
+    /* Post-its */
+    --postit-fazer-bg: #e0f2fe;
+    --postit-fazer-borda: #0284c7;
+    
+    --postit-andamento-bg: #fef08a;
+    --postit-andamento-borda: #d97706;
+    
+    --postit-revisao-bg: #f3e8ff;
+    --postit-revisao-borda: #7c3aed;
+    
+    --postit-concluida-bg: #dcfce7;
+    --postit-concluida-borda: #16a34a;
 
-    /* Bordas */
-    --raio: 0.45rem;
+    /* Tipografia */
+    --fonte-display: 'Kalam', 'Segoe Print', 'Comic Sans MS', cursive;
+    --fonte-manuscrita: 'Patrick Hand', 'Caveat', cursive;
+    --fonte-corpo: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+
+    /* Sombras 3D */
+    --sombra-placa: 0 10px 25px rgba(0, 0, 0, 0.35), 0 3px 6px rgba(0, 0, 0, 0.2);
+    --sombra-postit: 0 8px 18px rgba(0, 0, 0, 0.22), 0 2px 5px rgba(0, 0, 0, 0.12);
+    --sombra-postit-hover: 0 20px 30px rgba(0, 0, 0, 0.35), 0 8px 12px rgba(0, 0, 0, 0.18);
 }
 
-
 /* =====================================================
-   PÁGINA
+   BODY - QUADRO DE CORTIÇA
    ===================================================== */
-
 body {
     margin: 0;
-    padding: 1rem;
-
-    color: var(--cor-texto);
-
-    /* Fonte mais orgânica */
-    font-family: "Segoe Print", "Bradley Hand", "Comic Sans MS", cursive;
-
+    padding: 1.5rem 1rem 3rem 1rem;
+    min-height: 100vh;
+    color: var(--texto-principal);
+    font-family: var(--fonte-corpo);
     line-height: 1.5;
+    background-color: var(--fundo-cortica);
 
-    background-color: #9a6737;
-
+    /* Textura de cortiça realista gerada com gradientes CSS */
     background-image:
-        repeating-linear-gradient(
-            0deg,
-            rgba(80, 40, 10, 0.08) 0,
-            rgba(80, 40, 10, 0.08) 1px,
-            transparent 1px,
-            transparent 8px
-        ),
-        repeating-linear-gradient(
-            90deg,
-            rgba(255, 220, 150, 0.08) 0,
-            rgba(255, 220, 150, 0.08) 2px,
-            transparent 2px,
-            transparent 45px
-        ),
-        linear-gradient(
-            90deg,
-            #805020,
-            #a96f38,
-            #8d592c,
-            #b4773d,
-            #89552a
-        );
+        radial-gradient(rgba(0, 0, 0, 0.18) 15%, transparent 16%),
+        radial-gradient(rgba(255, 255, 255, 0.12) 15%, transparent 16%),
+        radial-gradient(rgba(70, 35, 10, 0.25) 15%, transparent 16%),
+        linear-gradient(135deg, #a06d3b 0%, #885527 40%, #6e3f19 100%);
+    background-size: 50px 50px, 50px 50px, 30px 30px, 100% 100%;
+    background-position: 0 0, 25px 25px, 12px 12px, 0 0;
+
+    /* Moldura de madeira no entorno do quadro */
+    box-shadow: 
+        inset 0 0 120px rgba(20, 10, 3, 0.65),
+        inset 0 0 25px rgba(0, 0, 0, 0.8);
 }
 
+/* Scrollbar Personalizada */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #502e12;
+}
+::-webkit-scrollbar-thumb {
+    background: #885527;
+    border-radius: 5px;
+    border: 2px solid #502e12;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #a86c38;
+}
 
 /* =====================================================
-   MOLDURA DO QUADRO
+   MOLDURA / CONTAINER
    ===================================================== */
-
-header,
-main,
-footer {
-    width: 96%;
-    max-width: 1800px;
+header, main, footer {
+    width: 98%;
+    max-width: 1750px;
     margin-inline: auto;
 }
 
-
 /* =====================================================
-   CABEÇALHO
+   CABEÇALHO - PLACA PRINCIPAL PRESA COM TACHINHAS
    ===================================================== */
-
 header {
-    padding: var(--espaco-xl);
-
-    background-color: #f8e9b9;
-
-    border: 1px solid #d4bd7d;
-
-    box-shadow:
-        0 0.4rem 0.7rem rgba(50, 25, 5, 0.35);
-
-    transform: rotate(-0.2deg);
-
-    border-radius: 0.15rem 0.5rem 0.2rem 0.4rem;
+    position: relative;
+    padding: 1.25rem 2rem;
+    margin-bottom: 2rem;
+    background: #fffbeb;
+    background-image: 
+        linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(254,243,199,0.95)),
+        repeating-linear-gradient(0deg, transparent, transparent 29px, rgba(217, 119, 6, 0.15) 30px);
+    border: 2px solid #f59e0b;
+    border-radius: 6px;
+    box-shadow: var(--sombra-placa);
+    text-align: center;
+    transform: rotate(-0.3deg);
 }
+
+/* Tachinhas 3D (Pushpins) de metal nos cantos superiores */
+header::before, header::after {
+    content: "";
+    position: absolute;
+    top: 12px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #ff6b6b, #dc2626 65%, #881337 100%);
+    box-shadow: 
+        0 4px 6px rgba(0,0,0,0.4),
+        inset -1px -1px 3px rgba(0,0,0,0.5),
+        inset 1px 1px 3px rgba(255,255,255,0.8);
+    z-index: 5;
+}
+header::before { left: 20px; }
+header::after { right: 20px; }
 
 header h1 {
     margin: 0;
-
-    font-family: "Segoe Print", "Bradley Hand", cursive;
-
-    font-size: clamp(1.75rem, 5vw, 2.5rem);
-    line-height: 1.2;
-
-    color: #33230f;
+    font-family: var(--fonte-display);
+    font-size: clamp(1.8rem, 4vw, 2.7rem);
+    font-weight: 700;
+    color: #451a03;
+    letter-spacing: -0.01em;
+    text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.9);
 }
 
-
 /* =====================================================
-   ÁREA PRINCIPAL DO KANBAN
+   LAYOUT PRINCIPAL
    ===================================================== */
-
 main {
     display: grid;
-
     grid-template-columns: 1fr;
-
-    gap: var(--espaco-lg);
-
-    min-width: 0;
-
-    padding-block: var(--espaco-xl);
+    gap: 1.75rem;
 }
-
-
-/* =====================================================
-   SEÇÕES
-   ===================================================== */
-
-section {
-    display: flex;
-    flex-direction: column;
-
-    min-width: 0;
-
-    padding: var(--espaco-lg);
-
-    background-color: rgba(70, 35, 10, 0.10);
-
-    border: 1px solid rgba(70, 35, 10, 0.25);
-
-    border-radius: 0.4rem 0.7rem 0.5rem 0.6rem;
-
-    box-shadow:
-        inset 0 0 1rem rgba(60, 30, 5, 0.10);
-}
-
-
-/* =====================================================
-   TIPOGRAFIA
-   ===================================================== */
-
-h1 {
-    font-size: 2rem;
-}
-
-h2 {
-    font-size: 1.5rem;
-}
-
-h3 {
-    font-size: 1.25rem;
-}
-
-p,
-label,
-input,
-select,
-button {
-    font-size: 1rem;
-}
-
-/* =====================================================
-   PAINEL DE BUSCA E FILTROS
-   ===================================================== */
-
-section:first-child {
-    position: relative;
-
-    /* retiramos a caixa maior */
-    background-color: transparent;
-    border: none;
-    box-shadow: none;
-
-    transform: none;
-}
-
-
-/* =====================================================
-   TÍTULO DA ÁREA DE FILTROS
-   ===================================================== */
-
-section:first-child h2 {
-    margin-top: 0;
-    margin-bottom: var(--espaco-md);
-
-    font-family: "Segoe Print", "Bradley Hand", cursive;
-
-    color: #4b3218;
-    text-align: center;
-
-    letter-spacing: 0.03em;
-}
-
-
-/* =====================================================
-   FORMULÁRIO
-   ===================================================== */
-
-form {
-    display: flex;
-    flex-direction: column;
-
-    gap: var(--espaco-md);
-
-    min-width: 0;
-}
-
-form p {
-    display: flex;
-    flex-direction: column;
-
-    gap: var(--espaco-xs);
-
-    margin: 0;
-}
-
-
-/* =====================================================
-   FIELDSETS
-   ===================================================== */
-
-fieldset {
-    position: relative;
-
-    display: flex;
-    flex-wrap: wrap;
-
-    gap: var(--espaco-sm);
-
-    min-width: 0;
-
-    padding: 1.7rem var(--espaco-md) var(--espaco-md);
-
-    /* mais transparente */
-    background-color: rgba(255, 247, 210, 0.38);
-
-    border: 2px solid rgba(201, 169, 102, 0.70);
-
-    border-radius: 0.55rem 0.35rem 0.6rem 0.45rem;
-
-    box-shadow:
-        inset 0 0 0.5rem rgba(100, 60, 15, 0.05);
-}
-
-
-/* =====================================================
-   LEGENDS
-   ===================================================== */
-
-/*
-   O título continua com seu próprio fundo,
-   fazendo "Status", "Prioridade" e "Opções"
-   parecerem realmente dentro da caixa.
-*/
-
-legend {
-    padding: 0.2rem 0.7rem;
-
-    font-family: "Segoe Print", "Bradley Hand", cursive;
-
-    font-size: 1rem;
-
-    font-weight: bold;
-
-    color: #4b3218;
-
-    background-color: #fff7d2;
-
-    border: 1px solid #c9a966;
-
-    border-radius: 0.35rem;
-
-    box-shadow:
-        0 0.1rem 0.2rem rgba(60, 30, 5, 0.12);
-}
-
-
-/* =====================================================
-   BUSCA
-   ===================================================== */
-
-form > p {
-    padding: 0.7rem 0.8rem;
-
-    /* também um pouco transparente */
-    background-color: rgba(255, 247, 210, 0.38);
-
-    border: 1px dashed rgba(184, 149, 85, 0.75);
-
-    border-radius: 0.5rem 0.7rem 0.4rem 0.6rem;
-}
-
-form > p label {
-    font-family: "Segoe Print", "Bradley Hand", cursive;
-
-    font-weight: bold;
-
-    color: #4b3218;
-}
-
-
-/* =====================================================
-   CAMPO DE BUSCA
-   ===================================================== */
-
-input[type="text"] {
-    width: 100%;
-
-    min-height: 2.9rem;
-
-    padding: var(--espaco-sm) 1rem;
-
-    color: #3e321c;
-
-    background-color: rgba(243, 227, 181, 0.78);
-
-    border: 2px solid #b89555;
-
-    border-radius: 0.5rem 0.7rem 0.45rem 0.6rem;
-
-    box-shadow:
-        inset 0 0.1rem 0.2rem rgba(80, 50, 15, 0.10),
-        0 0.15rem 0.25rem rgba(50, 25, 5, 0.10);
-
-    font-family: Georgia, "Times New Roman", serif;
-
-    transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease,
-        transform 0.2s ease;
-}
-
-input[type="text"]::placeholder {
-    color: #796548;
-
-    font-style: italic;
-}
-
-input[type="text"]:focus {
-    border-color: #7040a0;
-
-    box-shadow:
-        0 0 0 3px rgba(112, 64, 160, 0.12),
-        inset 0 0.1rem 0.2rem rgba(80, 50, 15, 0.12);
-
-    transform: translateY(-1px);
-}
-
-
-/* =====================================================
-   RADIO BUTTONS
-   ===================================================== */
-
-input[type="radio"] {
-    width: 1.35rem;
-    height: 1.35rem;
-
-    margin: 0;
-
-    flex: 0 0 auto;
-
-    cursor: pointer;
-
-    accent-color: #7040a0;
-}
-
-label {
-    display: inline-flex;
-
-    align-items: center;
-
-    min-height: 1.5rem;
-
-    cursor: pointer;
-
-    color: #4b3218;
-}
-
-
-/* =====================================================
-   OPÇÕES / SELECT
-   ===================================================== */
-
-select {
-    min-height: 2.5rem;
-
-    padding: 0.5rem 0.75rem;
-
-    color: #3e321c;
-
-    background-color: rgba(243, 227, 181, 0.78);
-
-    border: 1px solid #b89555;
-
-    border-radius: 0.4rem;
-
-    font-family: Georgia, "Times New Roman", serif;
-
-    cursor: pointer;
-}
-
-
-/* =====================================================
-   BOTÃO LIMPAR FILTROS
-   ===================================================== */
-
-button {
-    min-height: 2.5rem;
-
-    padding: 0.5rem 1rem;
-
-    color: #fff7d2;
-
-    background-color: #7040a0;
-
-    border: none;
-
-    border-radius: 0.4rem;
-
-    font-family: "Segoe Print", "Bradley Hand", cursive;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 0.2rem 0.35rem rgba(50, 25, 5, 0.25);
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-button:hover {
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 0.35rem 0.5rem rgba(50, 25, 5, 0.3);
-}
-
-button:active {
-    transform: translateY(0);
-}
-
-
-/* =====================================================
-   FOCO - ACESSIBILIDADE
-   ===================================================== */
-
-input:focus-visible,
-select:focus-visible,
-button:focus-visible,
-label:focus-visible {
-    outline: 3px solid #7040a0;
-
-    outline-offset: 3px;
-}
-
-/* =====================================================
-   TÍTULO DOS STATUS
-   ===================================================== */
-
-.status {
-    position: relative;
-
-    display: flex;
-    align-items: center;
-
-    gap: var(--espaco-sm);
-
-    min-width: 0;
-
-    width: fit-content;
-
-    margin: 0 auto var(--espaco-lg);
-
-    padding: 0.65rem 1.5rem;
-
-    background-color: #ffffff;
-
-    border: 1px solid rgba(50, 30, 10, 0.20);
-
-    box-shadow:
-        0.2rem 0.3rem 0.5rem rgba(50, 25, 5, 0.25);
-
-    transform: rotate(-1deg);
-
-    border-radius: 0.15rem 0.35rem 0.2rem 0.3rem;
-}
-
-
-/* Bolinha */
-
-.bolinha {
-    flex: 0 0 auto;
-
-    width: 0.8rem;
-    height: 0.8rem;
-
-    border-radius: 50%;
-
-    box-shadow:
-        0 0 0.5rem currentColor;
-
-    animation: brilho 2s infinite ease-in-out;
-}
-
-
-/* =====================================================
-   CORES DOS STATUS
-   ===================================================== */
-
-.status-fazer {
-    color: var(--cor-a-fazer);
-
-    background-color: #cce1f7;
-}
-
-.status-fazer .bolinha {
-    background-color: var(--cor-a-fazer);
-}
-
-
-.status-andamento {
-    color: #795600;
-
-    background-color: #ffe477;
-}
-
-.status-andamento .bolinha {
-    background-color: var(--cor-andamento);
-}
-
-
-.status-revisao {
-    color: var(--cor-revisao);
-
-    background-color: #dfc9f4;
-}
-
-.status-revisao .bolinha {
-    background-color: var(--cor-revisao);
-}
-
-
-.status-concluida {
-    color: var(--cor-concluida);
-
-    background-color: #cce8c9;
-}
-
-.status-concluida .bolinha {
-    background-color: var(--cor-concluida);
-}
-
-
-/* =====================================================
-   ANIMAÇÃO DA BOLINHA
-   ===================================================== */
-
-@keyframes brilho {
-    0%,
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-
-    50% {
-        transform: scale(1.15);
-        opacity: 0.75;
-    }
-}
-
-
-/* =====================================================
-   ÁREA DOS POST-ITS
-   ===================================================== */
-
-ul {
-    display: flex;
-    flex-direction: column;
-
-    gap: var(--espaco-lg);
-
-    min-width: 0;
-
-    padding: var(--espaco-sm);
-
-    margin: 0;
-
-    list-style: none;
-
-    border-radius: var(--raio);
-
-    flex: 1;
-}
-
-
-/* Fundos das colunas */
-
-#status-fazer + ul {
-    background-color: rgba(190, 215, 240, 0.35);
-}
-
-#status-andamento + ul {
-    background-color: rgba(255, 220, 100, 0.25);
-}
-
-#status-revisao + ul {
-    background-color: rgba(210, 185, 235, 0.30);
-}
-
-#status-concluida + ul {
-    background-color: rgba(190, 225, 185, 0.30);
-}
-
-
-li {
-    min-width: 0;
-}
-
-
-/* =====================================================
-   POST-ITS
-   ===================================================== */
-
-article {
-    position: relative;
-
-    display: flex;
-    flex-direction: column;
-
-    min-width: 0;
-
-    min-height: 15rem;
-
-    padding: var(--espaco-lg);
-
-    background-color: #fff6a8;
-
-    border: 1px solid rgba(70, 50, 10, 0.20);
-
-    border-radius: 0.1rem;
-
-    box-shadow:
-        0.35rem 0.45rem 0.5rem rgba(40, 20, 5, 0.28);
-
-    transform: rotate(-1deg);
-
-    transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
-}
-
-
-/* Post-its alternados */
-
-li:nth-child(even) article {
-    transform: rotate(1.2deg);
-}
-
-
-/* =====================================================
-   FITA ADESIVA
-   ===================================================== */
-
-article::before {
-    content: "";
-
-    position: absolute;
-
-    top: -0.55rem;
-    left: 50%;
-
-    width: 4rem;
-    height: 1.1rem;
-
-    transform: translateX(-50%) rotate(-2deg);
-
-    background-color: rgba(210, 190, 135, 0.75);
-
-    border: 1px solid rgba(120, 100, 60, 0.15);
-
-    box-shadow:
-        0 0.1rem 0.15rem rgba(50, 30, 5, 0.15);
-}
-
-
-/* =====================================================
-   CORES DOS POST-ITS
-   ===================================================== */
-
-#status-fazer + ul article {
-    background-color: #cfe5f7;
-
-    border-left: 0.35rem solid var(--cor-a-fazer);
-}
-
-#status-andamento + ul article {
-    background-color: #fff09a;
-
-    border-left: 0.35rem solid var(--cor-andamento);
-}
-
-#status-revisao + ul article {
-    background-color: #e5d1f3;
-
-    border-left: 0.35rem solid var(--cor-revisao);
-}
-
-#status-concluida + ul article {
-    background-color: #d5edcf;
-
-    border-left: 0.35rem solid var(--cor-concluida);
-}
-
-
-/* =====================================================
-   TÍTULO DOS POST-ITS
-   ===================================================== */
-
-article h3 {
-    min-width: 0;
-
-    margin: 0 0 var(--espaco-sm);
-
-    overflow: hidden;
-
-    display: -webkit-box;
-
-    -webkit-box-orient: vertical;
-
-    -webkit-line-clamp: 2;
-
-    line-clamp: 2;
-
-    text-overflow: ellipsis;
-
-    color: #302611;
-
-    font-family: "Segoe Print", "Bradley Hand", cursive;
-
-    font-size: 1.25rem;
-
-    line-height: 1.35;
-}
-
-
-/* =====================================================
-   TEXTO DOS POST-ITS
-   ===================================================== */
-
-article p {
-    margin: 0;
-
-    overflow-wrap: anywhere;
-
-    color: #3e321c;
-
-    font-family: Georgia, "Times New Roman", serif;
-}
-
-article p + p {
-    margin-top: var(--espaco-xs);
-}
-
-
-/* =====================================================
-   PRAZO
-   ===================================================== */
-
-article .prazo {
-    margin-top: auto;
-}
-
-
-/* =====================================================
-   PRIORIDADE
-   ===================================================== */
-
-article .prioridade {
-    font-weight: bold;
-}
-
-
-/* =====================================================
-   EFEITO DO POST-IT
-   ===================================================== */
-
-article:hover {
-    transform: translateY(-0.5rem) rotate(0deg);
-
-    box-shadow:
-        0 0.9rem 1.2rem rgba(40, 20, 5, 0.30);
-
-    z-index: 5;
-}
-
-
-/* =====================================================
-   ESTRELINHA
-   ===================================================== */
-
-article::after {
-    content: "✦";
-
-    position: absolute;
-
-    right: 0.75rem;
-    bottom: 0.5rem;
-
-    font-size: 1.3rem;
-
-    opacity: 0;
-
-    transform: scale(0.5) rotate(0deg);
-
-    transition:
-        opacity 0.25s ease,
-        transform 0.25s ease;
-}
-
-
-.botao-detalhes {
-    align-self: center;
-
-    margin-top: auto;
-
-    padding: 0.45rem 0.9rem;
-
-    border: 1px solid #5f4b32;
-    border-radius: 5px;
-
-    background: rgba(255, 255, 255, 0.5);
-    color: #4a3925;
-
-    font-family: inherit;
-    font-size: 0.8rem;
-    font-weight: 600;
-
-    cursor: pointer;
-
-    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.12);
-
-    transform: none;
-    transition: 0.2s ease;
-}
-
-.botao-detalhes:hover {
-    background: rgba(255, 255, 255, 0.75);
-    transform: translateY(-2px);
-}
-
-article:hover::after {
-    opacity: 1;
-
-    transform:
-        scale(1)
-        rotate(20deg);
-}
-
-
-/* =====================================================
-   EFEITO DE CLIQUE
-   ===================================================== */
-
-article:active {
-    transform: scale(0.97);
-}
-
-
-/* =====================================================
-   RODAPÉ
-   ===================================================== */
-
-footer {
-    padding: var(--espaco-lg);
-
-    background-color: #f8e9b9;
-
-    border: 1px solid #d4bd7d;
-
-    box-shadow:
-        0.25rem 0.3rem 0.5rem rgba(50, 25, 5, 0.25);
-
-    border-radius: 0.2rem 0.5rem 0.3rem 0.4rem;
-}
-
-footer p {
-    margin: 0;
-
-    font-family: Georgia, "Times New Roman", serif;
-}
-
-footer p + p {
-    margin-top: var(--espaco-xs);
-}
-
-
-/* =====================================================
-   KANBAN - 4 COLUNAS
-   ===================================================== */
 
 @media (min-width: 1100px) {
-
     main {
-        grid-template-columns:
-            repeat(4, minmax(0, 1fr));
-
-        align-items: stretch;
-
-        gap: 1.5rem;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        align-items: start;
     }
 
     section:first-child {
@@ -942,173 +168,543 @@ footer p + p {
     }
 }
 
-
 /* =====================================================
-   REDUÇÃO DE ANIMAÇÕES
+   PAINEL DE BUSCA E FILTROS (FOLHA PAUTADA PRESA)
    ===================================================== */
-
-@media (prefers-reduced-motion: reduce) {
-
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.01ms !important;
-
-        animation-iteration-count: 1 !important;
-
-        transition-duration: 0.01ms !important;
-    }
+section:first-child {
+    position: relative;
+    padding: 1.5rem 1.75rem;
+    margin-bottom: 0.5rem;
+    background: #ffffff;
+    background-image: 
+        linear-gradient(90deg, transparent 50px, #fca5a5 50px, #fca5a5 52px, transparent 52px),
+        repeating-linear-gradient(0deg, transparent, transparent 27px, #e2e8f0 28px);
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    box-shadow: var(--sombra-placa);
+    transform: rotate(0.2deg);
 }
 
+/* Fita adesiva presa no topo do painel de filtros */
+section:first-child::before {
+    content: "";
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-1deg);
+    width: 150px;
+    height: 30px;
+    background: rgba(254, 240, 138, 0.75);
+    border: 1px solid rgba(234, 179, 8, 0.4);
+    backdrop-filter: blur(2px);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+    z-index: 5;
+}
 
-/* =========================
-   BUSCA E FILTROS
-   ========================= */
+section:first-child h2 {
+    margin-top: 0;
+    margin-bottom: 1.25rem;
+    font-family: var(--fonte-display);
+    font-size: 1.6rem;
+    color: #451a03;
+    text-align: center;
+}
+
+/* Formulário e Campos de Busca */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
 
 .area-pesquisa {
     display: flex;
     flex-direction: column;
     gap: 0.4rem;
-    margin-bottom: 1rem;
 }
 
-.area-pesquisa label {
-    font-weight: 600;
-    color: #4a3925;
+.area-pesquisa label,
+form > p label {
+    font-family: var(--fonte-display);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #5c2d12;
 }
 
-.area-pesquisa input {
+.area-pesquisa input[type="text"],
+input[type="text"] {
     width: 100%;
-    padding: 0.65rem 0.8rem;
-
-    border: 1px solid rgba(95, 75, 50, 0.45);
-    border-radius: 5px;
-
-    background: rgba(255, 248, 225, 0.55);
-    color: #3f3324;
-
-    font: inherit;
-
-    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.08);
+    min-height: 2.8rem;
+    padding: 0.65rem 1rem;
+    font-family: var(--fonte-corpo);
+    font-size: 0.95rem;
+    color: #1e293b;
+    background: #f8fafc;
+    border: 2px solid #cbd5e1;
+    border-radius: 8px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease;
 }
 
+input[type="text"]::placeholder {
+    color: #94a3b8;
+    font-style: italic;
+}
 
-/* =========================
-   ÁREA DE FILTROS
-   ========================= */
+input[type="text"]:focus {
+    outline: none;
+    border-color: #7c3aed;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2), inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
 
+/* Grupo de Filtros */
 .grupo-filtros {
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
-
-    padding: 0.8rem 1rem;
-
-    border: 1px solid rgba(95, 75, 50, 0.4);
-    border-radius: 5px;
-
-    background: rgba(255, 248, 225, 0.2);
-
-    box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.08);
+    gap: 1rem;
+    padding: 1.2rem;
+    background: rgba(248, 250, 252, 0.85);
+    border: 1px dashed #94a3b8;
+    border-radius: 8px;
+    margin: 0;
 }
 
 .grupo-filtros > legend {
-    padding: 0 0.5rem;
-
-    color: #4a3925;
-    font-size: 1rem;
+    padding: 0.25rem 0.8rem;
+    font-family: var(--fonte-display);
+    font-size: 1.05rem;
     font-weight: 700;
+    color: #451a03;
+    background: #fef3c7;
+    border: 1px solid #fde047;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
 }
 
-
-/* =========================
-   STATUS E PRIORIDADE
-   ========================= */
-
+/* Sub-fieldsets de Status e Prioridade */
 .grupo-filtros fieldset {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 0.35rem 0.7rem;
-
-    padding: 0.55rem 0.7rem;
-
-    border: none;
-    border-radius: 4px;
-
-    background: rgba(255, 255, 255, 0.18);
+    gap: 0.5rem 0.8rem;
+    padding: 0.8rem 1rem;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    margin: 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
 }
 
-.grupo-filtros fieldset legend {
-    padding: 0 0.3rem;
-
-    color: #5a4630;
-    font-size: 0.85rem;
-    font-weight: 600;
+.grupo-filtros fieldset legend,
+legend {
+    padding: 0 0.5rem;
+    font-family: var(--fonte-display);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #78350f;
 }
 
-.grupo-filtros fieldset label {
-    color: #4a3925;
-    font-size: 0.85rem;
+/* Estilização Customizada de Radio Buttons e Labels */
+.grupo-filtros input[type="radio"],
+input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 1.1rem;
+    height: 1.1rem;
+    border: 2px solid #94a3b8;
+    border-radius: 50%;
+    margin: 0 0.25rem 0 0;
     cursor: pointer;
+    vertical-align: middle;
+    transition: all 0.2s ease;
+    background: #fff;
+    display: inline-block;
+    position: relative;
 }
 
+.grupo-filtros input[type="radio"]:checked,
+input[type="radio"]:checked {
+    border-color: #7c3aed;
+    background-color: #7c3aed;
+    box-shadow: inset 0 0 0 3px #ffffff;
+}
 
-/* =========================
-   ORDENAÇÃO
-   ========================= */
+.grupo-filtros label,
+label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #334155;
+    cursor: pointer;
+    margin-right: 0.75rem;
+    user-select: none;
+    transition: color 0.2s ease;
+}
 
+.grupo-filtros input[type="radio"]:checked + label {
+    color: #6d28d9;
+    font-weight: 700;
+}
+
+/* Ordenação e Select */
 .area-ordenacao {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.75rem;
+    margin-top: 0.25rem;
 }
 
 .area-ordenacao label {
-    color: #4a3925;
+    font-family: var(--fonte-display);
+    font-size: 1rem;
+    font-weight: 700;
+    color: #5c2d12;
+}
+
+.area-ordenacao select, select {
+    padding: 0.5rem 1rem;
+    font-family: var(--fonte-corpo);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #334155;
+    background: #ffffff;
+    border: 2px solid #cbd5e1;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+}
+
+.area-ordenacao select:focus, select:focus {
+    outline: none;
+    border-color: #7c3aed;
+}
+
+/* Botão Limpar Filtros */
+#limpar-filtros, button {
+    align-self: flex-start;
+    padding: 0.55rem 1.25rem;
+    font-family: var(--fonte-display);
+    font-size: 1rem;
+    font-weight: 700;
+    color: #ffffff;
+    background: #7c3aed;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(124, 58, 237, 0.3);
+    transition: all 0.2s ease;
+}
+
+#limpar-filtros:hover, button:hover {
+    background: #6d28d9;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(124, 58, 237, 0.4);
+}
+
+#limpar-filtros:active, button:active {
+    transform: translateY(0);
+}
+
+/* =====================================================
+   COLUNAS DO KANBAN (SEÇÕES)
+   ===================================================== */
+section {
+    display: flex;
+    flex-direction: column;
+    min-height: 520px;
+    padding: 1.1rem 0.9rem;
+    background: rgba(35, 17, 5, 0.25);
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    backdrop-filter: blur(2px);
+}
+
+/* Títulos dos Status (Etiquetas Banner da Coluna) */
+.status {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    margin: 0 0 1.25rem 0;
+    padding: 0.65rem 1.25rem;
+    font-family: var(--fonte-display);
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-align: center;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    transform: rotate(-0.8deg);
+    width: 100%;
+}
+
+.status-fazer {
+    color: #0369a1;
+    background: #e0f2fe;
+    border: 1px solid #7dd3fc;
+}
+
+.status-andamento {
+    color: #b45309;
+    background: #fef3c7;
+    border: 1px solid #fde047;
+}
+
+.status-revisao {
+    color: #6b21a8;
+    background: #f3e8ff;
+    border: 1px solid #d8b4fe;
+}
+
+.status-concluida {
+    color: #15803d;
+    background: #dcfce7;
+    border: 1px solid #86efac;
+}
+
+/* Bolinha com brilho animado */
+.bolinha {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    box-shadow: 0 0 8px currentColor;
+    animation: pulso 2s infinite ease-in-out;
+    flex-shrink: 0;
+}
+
+.status-fazer .bolinha { background-color: var(--cor-a-fazer); }
+.status-andamento .bolinha { background-color: var(--cor-andamento); }
+.status-revisao .bolinha { background-color: var(--cor-revisao); }
+.status-concluida .bolinha { background-color: var(--cor-concluida); }
+
+@keyframes pulso {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.35); opacity: 0.7; }
+}
+
+/* Lista de Cards */
+ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1.35rem;
+    margin: 0;
+    padding: 0.25rem;
+    list-style: none;
+    flex: 1;
+}
+
+/* Fundos sutis das áreas de drop de cada coluna */
+#status-fazer + ul { background: var(--fundo-fazer-col); border-radius: 8px; }
+#status-andamento + ul { background: var(--fundo-andamento-col); border-radius: 8px; }
+#status-revisao + ul { background: var(--fundo-revisao-col); border-radius: 8px; }
+#status-concluida + ul { background: var(--fundo-concluida-col); border-radius: 8px; }
+
+li {
+    min-width: 0;
+}
+
+/* =====================================================
+   POST-ITS / CARDS (ARTICLES)
+   ===================================================== */
+article {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 14.5rem;
+    padding: 1.6rem 1.25rem 1.25rem 1.25rem;
+    border-radius: 2px;
+    box-shadow: var(--sombra-postit);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    cursor: pointer;
+}
+
+/* Rotações orgânicas alternadas simulando bilhetes reais */
+li:nth-child(odd) article { transform: rotate(-1.5deg); }
+li:nth-child(even) article { transform: rotate(1.8deg); }
+li:nth-child(3n) article { transform: rotate(-0.8deg); }
+
+/* TACHINHA 3D (PUSHPIN) NO TOPO DO POST-IT */
+article::before {
+    content: "";
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #ef4444, #b91c1c 65%, #7f1d1d 100%);
+    box-shadow: 
+        0 4px 6px rgba(0, 0, 0, 0.35),
+        inset -1px -1px 2px rgba(0, 0, 0, 0.5),
+        inset 1px 1px 2px rgba(255, 255, 255, 0.8);
+    z-index: 4;
+}
+
+/* Sombra de canto de papel dobrado */
+article::after {
+    content: "";
+    position: absolute;
+    bottom: 6px;
+    right: 8px;
+    width: 45px;
+    height: 16px;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.28);
+    transform: rotate(5deg);
+    z-index: -1;
+}
+
+/* Cores específicas dos Post-its por Coluna */
+#status-fazer + ul article {
+    background: var(--postit-fazer-bg);
+    border-top: 4px solid var(--cor-a-fazer);
+}
+
+#status-andamento + ul article {
+    background: var(--postit-andamento-bg);
+    border-top: 4px solid var(--cor-andamento);
+}
+
+#status-revisao + ul article {
+    background: var(--postit-revisao-bg);
+    border-top: 4px solid var(--cor-revisao);
+}
+
+#status-concluida + ul article {
+    background: var(--postit-concluida-bg);
+    border-top: 4px solid var(--cor-concluida);
+}
+
+/* Título da Tarefa */
+article h3 {
+    margin: 0.3rem 0 0.6rem 0;
+    font-family: var(--fonte-display);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #1e293b;
+    line-height: 1.3;
+}
+
+/* Texto / Descrição */
+article p {
+    margin: 0 0 0.5rem 0;
+    font-size: 0.93rem;
+    color: #334155;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+}
+
+/* Metadados (Prazo e Prioridade) */
+article .prazo {
+    margin-top: auto;
+    padding-top: 0.75rem;
     font-size: 0.85rem;
     font-weight: 600;
+    color: #475569;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
 }
 
-.area-ordenacao select {
-    padding: 0.4rem 0.55rem;
+article .prazo::before {
+    content: "📅";
+    font-size: 0.9rem;
+}
 
-    border: 1px solid rgba(95, 75, 50, 0.45);
+article .prioridade {
+    display: inline-block;
+    margin-top: 0.4rem;
+    padding: 0.25rem 0.65rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
     border-radius: 4px;
-
-    background: rgba(255, 248, 225, 0.55);
-    color: #3f3324;
-
-    font: inherit;
-    font-size: 0.85rem;
+    width: fit-content;
 }
 
-
-/* =========================
-   LIMPAR FILTROS
-   ========================= */
-
-#limpar-filtros {
+/* Botão de Detalhes dentro do Post-it */
+.botao-detalhes {
+    margin-top: 0.75rem;
     align-self: flex-start;
-
-    padding: 0.45rem 0.8rem;
-
-    border: 1px solid rgba(95, 75, 50, 0.5);
-    border-radius: 4px;
-
-    background: rgba(255, 255, 255, 0.3);
-    color: #4a3925;
-
-    font: inherit;
+    padding: 0.4rem 0.85rem;
+    font-family: var(--fonte-corpo);
     font-size: 0.8rem;
     font-weight: 600;
-
+    color: #475569;
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid #cbd5e1;
+    border-radius: 5px;
     cursor: pointer;
-
-    transition: 0.2s ease;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
-#limpar-filtros:hover {
-    background: rgba(255, 255, 255, 0.55);
+.botao-detalhes:hover {
+    background: #ffffff;
+    color: #0f172a;
+    border-color: #94a3b8;
     transform: translateY(-1px);
 }
+
+/* Efeito Hover no Post-it (Levanta do Quadro) */
+article:hover {
+    transform: scale(1.03) rotate(0deg) translateY(-8px) !important;
+    box-shadow: var(--sombra-postit-hover);
+    z-index: 10;
+}
+
+article:active {
+    transform: scale(0.99) rotate(0deg) translateY(-2px) !important;
+}
+
+/* =====================================================
+   RODAPÉ (ETIQUETA DO AUTOR)
+   ===================================================== */
+footer {
+    position: relative;
+    margin-top: 2.5rem;
+    padding: 1.25rem 1.5rem;
+    background: #fffbeb;
+    border: 1px solid #fde047;
+    border-radius: 6px;
+    box-shadow: var(--sombra-placa);
+    text-align: center;
+}
+
+footer p {
+    margin: 0;
+    font-family: var(--fonte-display);
+    font-size: 1.1rem;
+    color: #78350f;
+    font-weight: 700;
+}
+
+footer p + p {
+    margin-top: 0.25rem;
+    font-family: var(--fonte-corpo);
+    font-size: 0.9rem;
+    color: #92400e;
+    font-weight: 500;
+}
+
+/* =====================================================
+   ACESSIBILIDADE & MÍDIA
+   ===================================================== */
+input:focus-visible,
+select:focus-visible,
+button:focus-visible,
+article:focus-visible {
+    outline: 3px solid #7c3aed;
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
